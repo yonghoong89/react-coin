@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 
 
 class Price extends Component {
-  state = {}
+  state = {
+    
+  }
 
   componentDidMount(){
     // 외부 라이브러리 연동: D3, masonry, etc
@@ -13,15 +15,17 @@ class Price extends Component {
   
     _getPrice = async () =>{
       const price = await this._callapi() 
-      console.log(price)
+     
       this.setState({
         price:price //모던 자바스크립트 :  price
       })
+      console.log(price)
     }
   
     _callapi = () =>{
       return fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,XRP&tsyms=KRW')
       .then(potato => potato.json())//데이터를 상황에 맞게 편집 할 수 있음
+      .then(json => json.DISPLAY.BTC.KRW.PRICE)
       .catch(error => console.log(error))
     }
 
@@ -48,34 +52,34 @@ class Price extends Component {
             <tr>
               <td className="active">
                 <a>
-                  <div>₩ 4,233,155</div>
+                  <div>{this.state.price}</div>
                 </a>
               </td>
               <td className="active">
                 <a>
-                  <div>₩ 154,502</div>
+                  <div>미입력</div>
                 </a>
               </td>
               <td className="active">
                 <a>
-                  <div>₩ 348</div>
+                  <div>미입력</div>
                 </a>
               </td>
             </tr>
             <tr>
               <td className="active">
                 <a>
-                  <div>-1.79 %</div>
+                  <div>미입력</div>
                 </a>
               </td>
               <td className="active">
                 <a>
-                  <div>-5.26 %</div>
+                  <div>미입력</div>
                 </a>
               </td>
               <td className="active">
                 <a>
-                  <div>-2.79 %</div>
+                  <div>미입력</div>
                 </a>
               </td>
             </tr>
