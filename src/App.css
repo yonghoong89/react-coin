@@ -17,6 +17,7 @@ th a{color:#369}
 ul a{display:flex;color:#42b983}
 .bx{padding:80px 0 46px}
 .bx2{width:60px;height:60px;margin-right:10px}
+.bx2 img{width:60px;height:60px}
 table.type09{width:100%;margin-bottom:20px;table-layout:fixed;border-collapse:collapse;border-top:1px solid #ccc;text-align:center;font-size:12px;line-height:1.5}
 table.type09 img{width:60px;height:60px;vertical-align:middle}
 table.type09 caption{position:absolute;left:0;top:0;width:1px;height:1px;font-size:0;line-height:0}
@@ -41,3 +42,10 @@ td div{position:relative;height:100%;padding:10px 0}
 	0%,100% { opacity: 0; }
 	50% { opacity: 1; }
 }
+
+
+.list__coin{display: flex;border:1px solid #ccc;border-left:none;border-right:none}
+.list__coin li{flex-grow:1}
+.list__coin dt,.list__coin dd{text-align:center;height:40px;;line-height:40px;box-sizing:border-box}
+.list__coin dt{border-bottom:3px solid #036;font-size: bold}
+.list__coin dd{border-top:1px solid #ccc}
