@@ -2,25 +2,49 @@ import React, { Component } from 'react';
 
 
 class Price extends Component {
-  state = {}
+  state = {
+    BTC : null,
+    ETH : null,
+    XRP : null,
+    BTC_PERCENT : null,
+    ETH_PERCENT : null,
+    XRP_PERCENT : null
+  }
 
   componentDidMount(){
     this._getPrice()
-  }  
-
-  _renderPrice = () =>{
-    const price = this.state.price.map((price)=>{
-      return <Pricecontent price={price.btc.krw.price} />
-    });
-    return price
+  }
+  componentDidUpdate(prevProps, prevState){
+    //console.log(prevProps)
+      // if (this.props.tagList !== prevProps.tagList) {
+      //       console.log('업뎃?')
+      //       this.setState({
+      //             ...this.state,
+      //             selectTagNum : -1
+      //       })
+      // }
   }
 
+  // _renderPrice = () =>{
+  //   const price = this.state.price.map((price)=>{
+  //     return <Pricecontent price={price.btc.krw.price} />
+  //   });
+  //   return price
+  // }
+
   _getPrice = async () =>{
-    const price = await this._callapi() 
-    console.log(price)
+    const price = await this._callapi()
+    //console.log(price)
+
     this.setState({
-      price:price //모던 자바스크립트 :  price
+      BTC_PRICE : price.BTC.KRW.PRICE,
+      ETH_PRICE : price.ETH.KRW.PRICE,
+      XRP_PRICE : price.XRP.KRW.PRICE,
+      BTC_PERCENT : price.BTC.KRW.CHANGEPCT24HOUR,
+      ETH_PERCENT : price.ETH.KRW.CHANGEPCT24HOUR,
+      XRP_PERCENT : price.XRP.KRW.CHANGEPCT24HOUR
     })
+    console.log(this.state)
   }
 
   _callapi = () =>{
@@ -35,29 +59,27 @@ class Price extends Component {
       <article className="box__price">
         <h2 className="h_type">Live Prices <span><span></span>09:29</span></h2>
         <ul className="list__coin">
-          {this.state.price ? this._renderPrice() : "loading"}
-          {/*
           <li>
             <dl>
               <dt>BTC/KRW</dt>
-              <dd>₩ 4,346,276</dd>
-              <dd>-0.44%</dd>
+              <dd>{this.state.BTC_PRICE}</dd>
+              <dd>{this.state.BTC_PERCENT}%</dd>
             </dl>
           </li>
            <li>
             <dl>
             <dt>ETH/KRW</dt>
-            <dd>₩ 160,562</dd>
-            <dd>-1.16%</dd>
+            <dd>{this.state.ETH_PRICE}</dd>
+            <dd>{this.state.ETH_PERCENT}%</dd>
             </dl>
           </li>
           <li>
             <dl>
             <dt>XRP/KRW</dt>
-          <dd>₩ 352</dd>
-          <dd>-2.47%</dd>
+            <dd>{this.state.XRP_PRICE}</dd>
+            <dd>{this.state.XRP_PERCENT}%</dd>
             </dl>
-          </li> */}
+          </li>
         </ul>
       </article>
     );
