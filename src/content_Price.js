@@ -14,15 +14,12 @@ class Price extends Component {
   componentDidMount(){
     this._getPrice()
   }
-  componentDidUpdate(prevProps, prevState){
-    //console.log(prevProps)
-      // if (this.props.tagList !== prevProps.tagList) {
-      //       console.log('업뎃?')
-      //       this.setState({
-      //             ...this.state,
-      //             selectTagNum : -1
-      //       })
-      // }
+  componentDidUpdate(){
+    console.log("test")
+  }
+
+  componentWillReceiveProps(nextProps){
+    console.log("componentWillReceiveProps: " + JSON.stringify(nextProps));
   }
 
   // _renderPrice = () =>{
@@ -44,7 +41,6 @@ class Price extends Component {
       ETH_PERCENT : price.ETH.KRW.CHANGEPCT24HOUR,
       XRP_PERCENT : price.XRP.KRW.CHANGEPCT24HOUR
     })
-    console.log(this.state)
   }
 
   _callapi = () =>{
