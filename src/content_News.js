@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import LoadingOverlay from 'react-loading-overlay'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify'; //팝업
+import 'react-toastify/dist/ReactToastify.css'; //팝업
 
 class News extends Component {
   state = {
+    language : "KR > EN",
     max_length : null,
     news_length : 5
   }
@@ -12,11 +13,15 @@ class News extends Component {
   componentDidMount(){ //데이터 get
     this._getNews()
   }
+
+  componentDidUpdate(prevProps) {
+    //console.log(prevProps)
+  }
   
   _renderNews = () =>{
     const number = this.state.news_length //시작점
-    const news = this.state.news.slice(0,number).map((news)=>{
-      return <News_content image={news.source_info.img} link={news.guid} title={news.title} content={news.body} />
+    const news = this.state.news.slice(0,number).map((news,index)=>{
+      return <News_content image={news.source_info.img} link={news.guid} title={news.title} content={news.body} key={index} />
     });
   
     return news
@@ -53,14 +58,34 @@ class News extends Component {
     }else{
       alert("더이상 리스트가 없습니다.")
     }
+  }
 
+  language_change = () =>{
+    if(this.state.language == "KR > EN"){
+      this.setState({
+        language:"EN > KR"
+      })
+      console.log("한국어로 변경")
+    }else{
+      this.setState({
+        language:"KR > EN"
+      })
+      console.log("영어로 변경")
+    }
   }
 
   render() {
     //console.log(this.state)
     return (
       <article className="box__news">
-          <div className="h_area"><h2>Recent News <span><span></span>17:11</span></h2><button type="button">EN &gt; KR</button></div>
+          <div className="h_area">
+            <h2>Recent News 
+              <span>
+                <span></span><Update_time />
+              </span>
+            </h2>
+            <Language language={this.state.language} language_change={this.language_change} />
+          </div>
           <ul>
             {this.state.news ? this._renderNews() : <Loading />}
           </ul>
@@ -70,23 +95,6 @@ class News extends Component {
     );
   }
 }
-
-// function News_content({title,content,image,link}){
-//   return(
-//     <li>
-//       <a href={link} target="blank" >
-//         <div className="bx2">
-//           <img src={image} alt={title} />
-//         </div>
-//         <dl>
-//           <dt><News_time number={"시간 넣어야함 "} />{title}</dt>
-//           <dd><p>{content}</p></dd>
-//         </dl>
-//       </a>
-//     </li>
-//   )
-// }
-
 const News_content =({title,content,image,link}) =>{
   return(
     <li>
@@ -95,11 +103,17 @@ const News_content =({title,content,image,link}) =>{
           <img src={image} alt={title} />
         </div>
         <dl>
-          <dt><News_time number={"시간 넣어야함 "} />{title}</dt>
+          <dt><News_time number={"times... "} />{title}</dt>
           <dd><p>{content}</p></dd>
         </dl>
       </a>
     </li>
+  )
+}
+
+const Language = ({ language,language_change }) => {
+  return(
+    <button type="button" onClick={language_change}>{language}</button>
   )
 }
 
@@ -126,6 +140,12 @@ const Button_view_number = ({ number }) => {
 const Button_all_number = ({ number }) => {
   return(
     <time>{number}</time>
+  )
+}
+
+const Update_time = ({  }) => {
+  return(
+    <time>00:00</time>
   )
 }
 

@@ -20,13 +20,4 @@ class App extends Component {
 
 }
 
-// function Header(){
-//   return(
-//     <header>
-//         <h1>Live Cryptocurrency</h1>
-//         <p className="countdown">60</p>
-//         <button type="button" className="btn_reload"><span className="blind">Refresh</span></button>
-//       </header>
-//   )
-// }
 export default App;

@@ -2,37 +2,44 @@ import React, { Component } from 'react';
 
 
 class Price extends Component {
-  state = {
-    BTC : null,
-    ETH : null,
-    XRP : null,
-    BTC_PERCENT : null,
-    ETH_PERCENT : null,
-    XRP_PERCENT : null
-  }
 
+  constructor() {
+      super();
+      this.state = {
+        BTC : null,
+        ETH : null,
+        XRP : null,
+        BTC_PERCENT : null,
+        ETH_PERCENT : null,
+        XRP_PERCENT : null
+      };
+    }
+  
   componentDidMount(){
     this._getPrice()
   }
-  componentDidUpdate(){
-    console.log("test")
+
+  componentDidUpdate(prevProps) {
+    //console.log(prevProps)
   }
+
+  componentWillReceiveProps(nextProps) {
+    this._callapi()
+    //console.log("next"+nextProps)
+    // if(JSON.stringify(this.props.user) !== JSON.stringify(nextProps.user)) // Check if it's a new user, you can also use some unique property, like the ID
+    // {
+    //        this.updateUser();
+    // }
+} 
 
   componentWillReceiveProps(nextProps){
-    console.log("componentWillReceiveProps: " + JSON.stringify(nextProps));
+    this._callapi()
+    console.log(nextProps);
   }
-
-  // _renderPrice = () =>{
-  //   const price = this.state.price.map((price)=>{
-  //     return <Pricecontent price={price.btc.krw.price} />
-  //   });
-  //   return price
-  // }
 
   _getPrice = async () =>{
     const price = await this._callapi()
     //console.log(price)
-
     this.setState({
       BTC_PRICE : price.BTC.KRW.PRICE,
       ETH_PRICE : price.ETH.KRW.PRICE,
@@ -53,23 +60,23 @@ class Price extends Component {
   render() {
     return (
       <article className="box__price">
-        <h2 className="h_type">Live Prices <span><span></span>09:29</span></h2>
+        <h2 className="h_type">Live Prices <span><span></span><Update_time /></span></h2> 
         <ul className="list__coin">
-          <li>
+          <li className="active">
             <dl>
               <dt>BTC/KRW</dt>
               <dd>{this.state.BTC_PRICE}</dd>
               <dd>{this.state.BTC_PERCENT}%</dd>
             </dl>
           </li>
-           <li>
+           <li className="active">
             <dl>
             <dt>ETH/KRW</dt>
             <dd>{this.state.ETH_PRICE}</dd>
             <dd>{this.state.ETH_PERCENT}%</dd>
             </dl>
           </li>
-          <li>
+          <li className="active">
             <dl>
             <dt>XRP/KRW</dt>
             <dd>{this.state.XRP_PRICE}</dd>
@@ -82,16 +89,11 @@ class Price extends Component {
   }
 }
 
-function Pricecontent({price,pricepercent}){
+const Update_time = ({  }) => {
   return(
-    <li>
-      <dl>
-        <dt>BTC/KRW</dt>
-        <dd>{price}</dd>
-        <dd>-0.44%</dd>
-      </dl>
-    </li>
+    <time>00:00</time>
   )
 }
+
 
 export default Price;

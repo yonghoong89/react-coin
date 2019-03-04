@@ -48,4 +48,5 @@ td div{position:relative;height:100%;padding:10px 0}
 .list__coin li{flex-grow:1}
 .list__coin dt,.list__coin dd{text-align:center;height:40px;;line-height:40px;box-sizing:border-box}
 .list__coin dt{border-bottom:3px solid #036;font-size: bold}
-.list__coin dd{border-top:1px solid #ccc}
+.list__coin dd{position:relative;border-top:1px solid #ccc}
+.list__coin .active dd:after{clear:both;content:'';display:block;position:absolute;left:0;top:0;width:100%;height:100%;background:#42b983;-webkit-animation:fadeinout .8s linear forwards;animation:fadeinout .8s linear forwards}
