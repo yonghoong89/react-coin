@@ -21,14 +21,15 @@ class News extends Component {
   _renderNews = () =>{
     const number = this.state.news_length //시작점
     const news = this.state.news.slice(0,number).map((news,index)=>{
-      return <News_content image={news.source_info.img} link={news.guid} title={news.title} content={news.body} key={index} />
+      //console.log(news)
+      return <News_content image={news.source_info.img} link={news.guid} title={news.title} content={news.body} key={index}  />
     });
   
     return news
   }
   
   _getNews = async () =>{
-    const news = await this._callapi() 
+    const news = await this._callapi()
     this.setState({
       news:news
     })
@@ -125,6 +126,9 @@ const Loading = () => {
 }
 
 const News_time = ({ number }) => {
+
+  
+
   return(
     <time>{number}</time>
   )
