@@ -22,7 +22,7 @@ class App extends Component {
   }
   
   static getDerivedStateFromProps(nextProps, prevState) {
-    console.log(prevState)
+//    console.log(prevState)
     // 여기서는 setState 를 하는 것이 아니라
     // 특정 props 가 바뀔 때 설정하고 설정하고 싶은 state 값을 리턴하는 형태로
     // 사용됩니다.
@@ -68,7 +68,6 @@ class App extends Component {
     if(this.state.currentCount < 1) {
       this.setState({currentCount:60})
       this.popup()
-      console.log("데이터비교 및 값 변경")
     }
   }
     
@@ -76,11 +75,11 @@ class App extends Component {
     //clearInterval(this.intervalId);
   }
 
-  refresh = () =>{
+  refresh = (prevState) =>{
       this.setState({currentCount:60})
       this.popup()
       this._getPrice()
-      console.log("버튼클릭 시 데이터비교 및 값 변경")
+      console.log(prevState,"버튼클릭 시 데이터비교 및 값 변경")
   }
 
   popup = () =>{
@@ -88,7 +87,6 @@ class App extends Component {
   }
 
   render() {
-    console.log()
     return (
       <Fragment>
         {/* <Header onCreate={this.handleCreate} /> */}

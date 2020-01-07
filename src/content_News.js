@@ -5,7 +5,6 @@ import 'react-toastify/dist/ReactToastify.css'; //팝업
 
 class News extends Component {
   state = {
-    language : "KR > EN",
     max_length : null,
     news_length : 5
   }
@@ -61,20 +60,6 @@ class News extends Component {
     }
   }
 
-  language_change = () =>{
-    if(this.state.language == "KR > EN"){
-      this.setState({
-        language:"EN > KR"
-      })
-      console.log("한국어로 변경")
-    }else{
-      this.setState({
-        language:"KR > EN"
-      })
-      console.log("영어로 변경")
-    }
-  }
-
   render() {
     //console.log(this.state)
     return (
@@ -82,10 +67,9 @@ class News extends Component {
           <div className="h_area">
             <h2>Recent News 
               <span>
-                <span></span><Update_time />
+                <span className="icon_update">업데이트 시간</span><Update_time />
               </span>
             </h2>
-            <Language language={this.state.language} language_change={this.language_change} />
           </div>
           <ul>
             {this.state.news ? this._renderNews() : <Loading />}
@@ -98,7 +82,7 @@ class News extends Component {
 }
 const News_content =({title,content,image,link}) =>{
   return(
-    <li>
+    <li class="list-item">
       <a href={link} target="blank" >
         <div className="bx2">
           <img src={image} alt={title} />
@@ -112,12 +96,6 @@ const News_content =({title,content,image,link}) =>{
   )
 }
 
-const Language = ({ language,language_change }) => {
-  return(
-    <button type="button" onClick={language_change}>{language}</button>
-  )
-}
-
 const Loading = () => {
   //console.log(active)
   return (
@@ -126,9 +104,6 @@ const Loading = () => {
 }
 
 const News_time = ({ number }) => {
-
-  
-
   return(
     <time>{number}</time>
   )

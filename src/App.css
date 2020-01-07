@@ -6,6 +6,7 @@ h2{margin:0;padding:6px 0 15px;color:#333;font-size:16px;font-weight:bold;text-a
 h2.h_type{margin-bottom:0}
 h2 span{font-weight:normal;font-size:15px}
 h2 span span{display:inline-block;position:relative;top:2px;width:16px;height:16px;margin:0 4px 0 8px;background:url(img/ico_u.png) 0 0 no-repeat;background-size:100% 100%;font-weight:normal;font-size:14px}
+h2 span .icon_update{overflow:hidden;line-height:999px}
 ul{overflow:hidden;list-style-type:none;padding:0;text-align:left;font-size:12px}
 li{display:block;min-height:90px;margin:0}
 dl{margin:0;text-align:left}

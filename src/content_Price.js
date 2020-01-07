@@ -6,7 +6,7 @@ class Price extends Component {
     const price_info = this.props;
     return (
       <article className="box__price">
-        <h2 className="h_type">Live Prices <span><span></span><Update_time /></span></h2> 
+        <h2 className="h_type">Live Prices <span><span class="icon_update">업데이트 시간</span><Update_time /></span></h2> 
         <ul className="list__coin">
           <li className="active">
             <dl>
